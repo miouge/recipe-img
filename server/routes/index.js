@@ -17,7 +17,6 @@ router.get('/', function(req, res) {
 
 /*
 // -- page de login avec 1 simple html 
-
 router.get('/login', function(req, res) {
   
     // __dirname returns the directory that the currently executing script is in
@@ -76,6 +75,7 @@ router.get('/login', function(req, res, next) {
         });
     }
 });
+
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
     

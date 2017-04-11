@@ -1,6 +1,5 @@
 
-// ToDO : create the folder process.env.HOME + /trace
-var logger = require("./logger")('ServerWWW'); // logger iséo
+var logger = require("./logger")('ServerWWW');
 
 logger.info('---== Starting server.js ...==---');
 console.log('---== Starting server.js ...==---');
@@ -32,29 +31,30 @@ var app = express();
 // app.configure() : This method is no longer available (Removed in Express 4)
 // https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x
 
-app.set( 'port', 0+3000+0 ); // 0+3000+0 : permet de détecter le texte et de faire un remplacement avec sed pour la mise en production
-app.set( 'ip'  , '10.205.226.179' );
-//app.set( 'ip'  , '192.168.64.10' );
+app.set( 'port', process.env.PORT || 3000 );
+//app.set( 'ip'  , '192.168.0.0' );
+// project is reachable at url : https://recipe-image-pri2015.c9users.io
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//var loggerM = require('morgan');
-//app.use( loggerM('dev')); // met en fenetre de console des info sur les requetes entrantes
+var loggerM = require('morgan');
+app.use( loggerM('dev')); // met en fenetre de console des info sur les requetes entrantes
 
 // uncomment after placing your favicon in /public
 var favicon = require('serve-favicon'); // This module is exclusively for serving the "default, implicit favicon", which is GET /favicon.ico
-app.use( favicon( __dirname + '/public/images/favicon-ISEO.png'));
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use( favicon( __dirname + '/public/images/favicon.png'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json({limit: '100mb'}) );
 
 // Session management
 
-const osHomedir = require('os-homedir');
-var pathSessionStore = osHomedir() + /sessions/; // pathSessionStore = user home dir + /sessions/
+//const osHomedir = require('os-homedir');
+//var pathSessionStore = osHomedir() + /sessions/; // pathSessionStore = user home dir + /sessions/
+var pathSessionStore = '/home/ubuntu/workspace/server/sessions';
 
 logger.info('using as sessions folder  : <%s>', pathSessionStore );
 console.log('using as sessions folder  : <%s>', pathSessionStore );
@@ -112,9 +112,9 @@ var server = app.listen( app.get('port'), app.get('ip'), function() {
         if( monitored )
         {
             // --------- initialisation du watchdog --------
-            var wd = require('./watchdog')();
-            wd.init();
-            logger.info('watchdog started.' );
+            //var wd = require('./watchdog')();
+            //wd.init();
+            //logger.info('watchdog started.' );
         }
     });
 });

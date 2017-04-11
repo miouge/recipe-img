@@ -101,10 +101,12 @@ var logger = require('tracer').console({
                     + padZeros( now.getDate()     , 2 );
 
         var filename  = file_prefix + '_' + chaine + '.log';
+        
         //var tracepath = path.normalize( __dirname + '/trace/' );
+        //var tracepath = path.normalize( process.env.HOME + '/trace/' );
         
-        var tracepath = path.normalize( process.env.HOME + '/trace/' );
-        
+        var tracepath = path.normalize( '/home/ubuntu/workspace/server/trace/' );
+
         //toDo 
         // var osenv = require('osenv')
         // var path = osenv.path()
@@ -139,7 +141,6 @@ var logger = require('tracer').console({
 // logger.info('hello %s %d', 'world', 123, {foo : 'bar'});
 // logger.warn('hello %s %d %j', 'world', 123, {foo : 'bar'});
 // logger.error('hello %s %d %j', 'world', 123, {foo : 'bar'}, [ 1, 2, 3, 4 ],logger );
-
 
 module.exports = function( prefix ) // le parametre prefix est optionnel et ne devrait être spécifié que la premiere fois
 {

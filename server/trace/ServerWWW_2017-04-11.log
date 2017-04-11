@@ -1,0 +1,52 @@
+08:10:02.476 server.js(5)        info  : ---== Starting server.js ...==---
+08:10:02.486 server.js(11)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v4.6.1/bin/node
+08:10:02.487 server.js(11)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+08:10:02.691 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+08:15:20.086 server.js(5)        info  : ---== Starting server.js ...==---
+08:15:20.101 server.js(11)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v4.6.1/bin/node
+08:15:20.104 server.js(11)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+08:15:20.350 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+08:15:20.452 socket_io.js(144)   info  : socket io manager object created.
+08:15:20.500 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+08:15:20.508 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+08:15:20.657 server.js(110)      info  : socket io server started and initialized
+08:25:49.253 server.js(5)        info  : ---== Starting server.js ...==---
+08:25:49.263 server.js(11)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v4.6.1/bin/node
+08:25:49.264 server.js(11)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+08:25:49.446 server.js(60)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+08:25:49.524 socket_io.js(144)   info  : socket io manager object created.
+08:25:49.557 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+08:25:49.563 server.js(104)      info  : express server is now listening on ip <undefined> port <8080>
+08:25:49.677 server.js(111)      info  : socket io server started and initialized
+08:45:34.569 server.js(5)        info  : ---== Starting server.js ...==---
+08:45:34.577 server.js(11)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v4.6.1/bin/node
+08:45:34.579 server.js(11)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+08:45:34.952 server.js(60)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+08:45:35.123 socket_io.js(144)   info  : socket io manager object created.
+08:45:35.186 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+08:45:35.192 server.js(104)      info  : express server is now listening on ip <undefined> port <8080>
+08:45:35.469 server.js(111)      info  : socket io server started and initialized
+08:54:26.301 server.js(4)        info  : ---== Starting server.js ...==---
+08:54:26.310 server.js(10)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v4.6.1/bin/node
+08:54:26.311 server.js(10)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+08:54:26.697 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+08:54:26.859 socket_io.js(144)   info  : socket io manager object created.
+08:54:26.913 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+08:54:26.922 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+08:54:27.159 server.js(110)      info  : socket io server started and initialized
+09:01:19.780 server.js(4)        info  : ---== Starting server.js ...==---
+09:01:19.785 server.js(10)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v6.10.2/bin/node
+09:01:19.787 server.js(10)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+09:01:19.978 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+09:01:20.074 socket_io.js(144)   info  : socket io manager object created.
+09:01:20.113 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+09:01:20.119 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+09:01:20.237 server.js(110)      info  : socket io server started and initialized
+09:03:28.390 server.js(4)        info  : ---== Starting server.js ...==---
+09:03:28.397 server.js(10)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v6.10.2/bin/node
+09:03:28.399 server.js(10)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+09:03:28.588 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+09:03:28.680 socket_io.js(144)   info  : socket io manager object created.
+09:03:28.721 appli.js(42)        info  : extjs appli path [../../client/build/testing]
+09:03:33.718 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+09:03:33.962 server.js(110)      info  : socket io server started and initialized
