@@ -1,0 +1,24 @@
+doctype html
+meta(name="viewport" content="width=device-width, initial-scale=1")
+html(lang="en")
+ 
+ head
+  link(rel="stylesheet" type="text/css" href='/stylesheets/login.css')
+  
+ body
+  
+  div(id="wrap")
+  h1(id="header" align="center")
+  br
+  p(id="UserLogin" align="center") #{introduction}
+  hr
+  div.loginform
+   form(id='loginform', action="/login", method="POST")
+    input(type="username" name="username" id="uname" placeholder="#{placeholderUname}")
+    input(type="password" name="password" id ="pword" placeholder="#{placeholderPword}")
+    //div(id="remember")
+    // label.checkbox
+    //  input(style={color: "green"} type='checkbox' name="remember" unchecked) 
+    //  |   Remember me?
+    br
+    input(style={background: "#58B058"} type="submit" class="btn btn-primary btn-block btn-large" value="#{valueSubmit}")
