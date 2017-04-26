@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>chap3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--V 3.0.1 ...-->
+  <link href="libs/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="libs/vendors/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <div class="container">
+        <a class="navbar-brand">Mon Blog</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>Backbone rocks !!!</h1>
+    </div>
+
+    <!-- Template d'affichage des articles -->
+    <script type="text/template" id="articles-collection-template">
+
+      <% _.each(articles, function(article) { %>
+        <h1>
+          <%= article.title %>
+        </h1>
+        <h6>
+          <%= article.publicationDate %>
+        </h6>
+        <p>
+          <%= article.content %>
+        </p>
+        <% }); %>
+
+    </script>
+    <!-- div où seront affichés les articles -->
+    <div id="articles-collection-container"></div>
+
+  </div>
+
+</body>
+<!-- === Références aux Frameworks === -->
+<script src="libs/vendors/jquery.js"></script>
+<!--V 1.10.2 -->
+<script src="libs/vendors/underscore.js"></script>
+<!--V 1.5.2 -->
+<script src="libs/vendors/backbone.js"></script>
+<!--V 1.1.0 -->
+
+<!-- === code applicatif === -->
+<script>
+  $(function() {
+    window.blog = {};
+
+    /*--- Modèle article ---*/
+
+    blog.Article = Backbone.Model.extend({
+      defaults: {
+        title: "titre de l'article",
+        content: "contenu de l'article",
+      },
+      initialize: function() {
+        console.log("Création d'un nouvel article");
+        this.set("publicationDate", new Date());
+      }
+    });
+
+    /*--- Collection d'articles ---*/
+
+    blog.ArticlesCollection = Backbone.Collection.extend({
+      model: blog.Article,
+      initialize: function() {
+        console.log("Création d'une collection d'articles");
+      }
+    });
+
+    /*--- Vues ---*/
+    blog.ArticlesView = Backbone.View.extend({
+
+      el: $("#articles-collection-container"),
+
+      initialize: function() {
+        this.template = _.template($("#articles-collection-template").html());
+
+        /*--- binding ---*/
+        _.bindAll(this, 'render');
+
+        this.collection.bind('change', this.render);
+        this.collection.bind('add', this.render);
+        this.collection.bind('remove', this.render);
+        /*---------------*/
+      },
+
+      render: function() {
+        var renderedContent = this.template({
+          articles: this.collection.toJSON()
+        });
+        $(this.el).html(renderedContent);
+        return this;
+      }
+    });
+
+    /*--- bootstrap ---*/
+    blog.listeArticles = new blog.ArticlesCollection();
+
+    blog.listeArticles.add(new blog.Article({
+      title: "titre1",
+      content: "contenu1"
+    }));
+    blog.listeArticles.add(new blog.Article({
+      title: "titre2",
+      content: "contenu2"
+    }));
+    blog.listeArticles.add(new blog.Article({
+      title: "titre3",
+      content: "contenu3"
+    }));
+    blog.listeArticles.add(new blog.Article({
+      title: "titre4",
+      content: "contenu4"
+    }));
+    blog.listeArticles.add(new blog.Article({
+      title: "titre5",
+      content: "contenu5"
+    }));
+
+  /* to execute in console*/
+
+    articlesView = new blog.ArticlesView({ collection : blog.listeArticles });
+    articlesView.render();
+    blog.listeArticles.add(new blog.Article({title:"Hello", content:"Hello World"}));
+
+  });
+</script>
+
+</html>

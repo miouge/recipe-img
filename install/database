@@ -1,0 +1,57 @@
+# start the postgresSQL service
+sudo service postgresql start
+
+# connect to the service
+sudo sudo -u postgres psql
+
+# set the "postgres" user pawword
+postgres=# \password
+# enter the password : "admin"
+\q
+
+#create another user
+sudo -i (we are root)
+sudo -i -u postgres (we are postgres)
+
+createuser -d -P dba
+# enter the password "dba"
+
+# enter psql
+psql
+postgres=# ALTER ROLE dba WITH CREATEDB;
+postgres=# ALTER USER dba WITH ENCRYPTED PASSWORD 'dba';
+
+# to create the tablespace -----------------
+
+#create the folder (as root, sudo -i)
+cd /home/ubuntu/workspace/
+mkdir database
+chown postgres /home/ubuntu/workspace/database
+
+# now in psql logges as postgres
+postgres=# CREATE TABLESPACE cloud LOCATION '/home/ubuntu/workspace/database';
+# optionnal allow ommiting the TABLESPACE when creating table
+postgres=# SET default_tablespace = cloud;
+# list tablespace
+postgres=#\db
+# allow access
+postgres=# GRANT ALL ON TABLESPACE cloud TO dba;
+
+# to create the database --------------------
+postgres=# CREATE DATABASE "recipedb" OWNER dba;
+# to drop the database
+postgres=# DROP DATABASE "recipedb";
+# list current database
+postgres=# \l 
+
+# to connect into the database from a terminal
+psql -U dba -h localhost recipedb
+recipedb=>
+
+# to execute database create script
+# launch psql in folder install\sql\
+recipedb=>\i createdb.sql
+
+# to display current table
+recipedb=>\dt
+

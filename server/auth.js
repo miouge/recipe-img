@@ -9,9 +9,15 @@ passport.use( new LocalStrategy( { passReqToCallback : true }, function( req, us
         
     logger.trace( "LocalStrategy() username = %s password = %s ...", username, password );
 
-    model_auth.checkAuthentification( username, password, function( isUserOK, isPasswordOK, isDateOK, idlog, idcust, surname, firstname, tzdisplay, language ) {
+    model_auth.checkAuthentification( username, password, function( err, isUserOK, isPasswordOK, isDateOK, idlog, surname, firstname, tzdisplay, language ) {
 
         // Verify Callback ...
+        
+        if( err ) {
+            
+             return done( err );
+             
+        }
         
         try
         {
@@ -34,7 +40,6 @@ passport.use( new LocalStrategy( { passReqToCallback : true }, function( req, us
                     "sessionid" : req.sessionID,
                     // informations essentielles pour cet utilisateur
                     "idlog" : idlog,
-                    "idcust" : idcust,
                     "login" : username,
                     "surname" : surname,
                     "firstname" : firstname,
@@ -61,7 +66,7 @@ passport.use( new LocalStrategy( { passReqToCallback : true }, function( req, us
 
 passport.serializeUser( function( req, obj, done) {
     
-    //logger.trace( "serializeUser obj : %j", obj );
+    logger.trace( "serializeUser obj : %j", obj );
     
     // The purpose of the serialize function is to return sufficient identifying information
     // to recover the user account on any subsequent requests.

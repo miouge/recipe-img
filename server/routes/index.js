@@ -87,7 +87,10 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login'
     
     // the language for this user has been extracted and stored into the session object req.user (by checkAuthentification)
     
-    var url = '/appli/?lng=' + req.user.lng;
+    //var url = '/appli/?lng=' + req.user.lng;
+    
+    var url = '/appli/chap3(MVC).html?lng=' + req.user.lng;
+    
     res.redirect( url );
 
 });

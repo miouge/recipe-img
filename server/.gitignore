@@ -1,4 +1,7 @@
 node_modules/
-sessions/
 .c9/
 *~
+
+#will ignore the directory trace at root level
+/trace/
+/sessions/

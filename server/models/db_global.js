@@ -3,7 +3,7 @@ var logger = require("../logger")(); // logger iséo
 module.exports.getConnectionString = function() {
     
     // return the connection string
-    return 'postgres://rsdba:rsdba@localhost:5432/iseo_db';
+    return 'postgres://dba:dba@localhost:5432/recipedb';
 };
 
 module.exports.isPgConnectionKO = function isPgConnectionKO( err, done, callback ) {

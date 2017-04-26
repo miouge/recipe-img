@@ -1,4 +1,4 @@
-var logger = require("../logger")(); // logger iséo
+var logger = require("../logger")();
 
 var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs'); // npm install bcrypt-nodejs
@@ -15,21 +15,21 @@ module.exports.checkAuthentification = function( username, password, callback ) 
     logger.trace( "checkAuthentification of %s / %s ...", username, password );
 
     // get a pg client from the connection pool
-    pg.connect( connectionString, function(err, client, done) {
+    pg.connect( connectionString, function( err, client, done ) {
         
         // handle the error of connection
         if( isPgConnectionKO( err, done, callback )) { return; }
         
         var params = [ username ];
         
-        var sql = "SELECT l.idlog, l.password, l.firstname, l.surname, l.tzdisplay , lg.english_name lng, c.idcust, ";
-        sql +=    "to_char( c.dateend, 'yyyy/mm/dd hh24:mi:ss' ) dateendz "; // date d'expiration de l'abonnement au service
-        sql +=    "FROM login l, language lg, customer c ";
+        var sql = "SELECT l.idlog, l.password, l.firstname, l.surname, l.tzdisplay, ";
+        sql +=    "to_char( l.dateend, 'yyyy/mm/dd hh24:mi:ss' ) dateendz, "; // date d'expiration de l'abonnement au service
+        sql +=    "lg.english_name lng ";
+        sql +=    "FROM login l ";
+        sql +=    "INNER JOIN language lg ON l.idlng = lg.idlng ";
         sql +=    "WHERE login = $1 ";
-        sql +=    "AND l.idlng = lg.idlng ";
-        sql +=    "AND l.idcust = c.idcust ";
 
-        //logger.trace( "request : %s", sql );
+        logger.trace( "request : %s", sql );
 
         var query = client.query( sql, params );
         
@@ -39,7 +39,7 @@ module.exports.checkAuthentification = function( username, password, callback ) 
         });
         
         query.on( 'row', function( row, results ) {
-            //logger.trace( "%j", row );
+            logger.trace( "%j", row );
             results.addRow(row); // accumule les records dans l'objets result, cela permettra d'utiliser result.rows[] dans le gestionnaire de l'event 'end'
         });
         
@@ -59,7 +59,6 @@ module.exports.checkAuthentification = function( username, password, callback ) 
             {
                 isUserOK = true;
                 var idlog  = result.rows[0].idlog;
-                var idcust = result.rows[0].idcust;
                 
                 // verification du password 
                 if( result.rows[0].password.length == 0 )
@@ -90,10 +89,10 @@ module.exports.checkAuthentification = function( username, password, callback ) 
                 {
                     // il y a une date de fin abonnement spécifiée pour ce client
                     var endof = moment.tz( result.rows[0].dateendz, 'YYYY/MM/DD HH:mm:ss', "UTC"); // chaine UTC => moment.tz UTC
-                    //logger.trace("date de fin d'abonnement au service : %s", endof.format('YYYY/MM/DD HH:mm:ss') );
+                    logger.trace("date de fin d'abonnement au service : %s", endof.format('YYYY/MM/DD HH:mm:ss') );
                     
                     var now = moment.tz();
-                    //console.log("date actuelle : %s", now.format('YYYY/MM/DD HH:mm:ss') );
+                    console.log("date actuelle : %s", now.format('YYYY/MM/DD HH:mm:ss') );
                     
                     if( now > endof )
                     {
@@ -113,7 +112,7 @@ module.exports.checkAuthentification = function( username, password, callback ) 
             }
             
             done();
-            callback( isUserOK, isPasswordOK, isDateOK, idlog, idcust, firstname, surname, tzdisplay, language );
+            callback( false, isUserOK, isPasswordOK, isDateOK, idlog, firstname, surname, tzdisplay, language ); // first value is about the err
         });
     });
 };
@@ -194,7 +193,7 @@ module.exports.destroySession = function( lsessionid, callback ) {
 
 module.exports.getInfoFromSession = function( lsessionid, callback ) {
     
-    // logger.trace( "getInfoFromSession for %s ...", lsessionid );
+    logger.trace( "getInfoFromSession for %s ...", lsessionid );
 
     // get a pg client from the connection pool
     pg.connect( connectionString, function(err, client, done) {
@@ -204,13 +203,15 @@ module.exports.getInfoFromSession = function( lsessionid, callback ) {
 
         var params = [ lsessionid ];
 
-        var sql = "SELECT s.lsessionid, l.idlog, l.login, l.firstname, l.surname, l.tzdisplay, c.idcust ";
-        sql +=    "FROM session s, login l, customer c ";
+        var sql = "SELECT s.lsessionid, ";
+        sql +=    "l.idlog, l.login, l.firstname, l.surname, l.tzdisplay, ";
+        sql +=    "lg.english_name lng ";
+        sql +=    "FROM session s ";
+        sql +=    "INNER JOIN login l ON l.idlog = s.idlog ";
+        sql +=    "INNER JOIN language lg ON l.idlng = lg.idlng ";
         sql +=    "WHERE s.lsessionid = $1 ";
-        sql +=    "AND s.idlog = l.idlog ";
-        sql +=    "AND c.idcust = l.idcust ";
 
-        //logger.trace( "request : %s", sql );
+        //logger.trace( "query : %s", sql );
         
         var query = client.query( sql, params );
         
@@ -220,7 +221,7 @@ module.exports.getInfoFromSession = function( lsessionid, callback ) {
         });
         
         query.on( 'row', function( row, results ) {
-            //logger.trace( "%j", row );
+            logger.trace( "%j", row );
             results.addRow(row); // accumule les records dans l'objets result, cela permettra d'utiliser result.rows[] dans le gestionnaire de l'event 'end'
         });
         

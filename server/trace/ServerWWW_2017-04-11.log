@@ -50,3 +50,19 @@
 09:03:28.721 appli.js(42)        info  : extjs appli path [../../client/build/testing]
 09:03:33.718 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
 09:03:33.962 server.js(110)      info  : socket io server started and initialized
+10:15:41.319 server.js(4)        info  : ---== Starting server.js ...==---
+10:15:41.325 server.js(10)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v6.10.2/bin/node
+10:15:41.326 server.js(10)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+10:15:41.708 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+10:15:41.868 socket_io.js(144)   info  : socket io manager object created.
+10:15:41.924 appli.js(30)        info  : appli path [../../client/backbone]
+10:15:41.929 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+10:15:42.148 server.js(110)      info  : socket io server started and initialized
+10:16:29.363 server.js(4)        info  : ---== Starting server.js ...==---
+10:16:29.370 server.js(10)       info  : command line argument[0] : /home/ubuntu/.nvm/versions/node/v6.10.2/bin/node
+10:16:29.372 server.js(10)       info  : command line argument[1] : /home/ubuntu/workspace/server/server.js
+10:16:29.595 server.js(59)       info  : using as sessions folder  : </home/ubuntu/workspace/server/sessions>
+10:16:29.693 socket_io.js(144)   info  : socket io manager object created.
+10:16:29.740 appli.js(30)        info  : appli path [../client/backbone]
+10:16:29.746 server.js(103)      info  : express server is now listening on ip <undefined> port <8080>
+10:16:29.870 server.js(110)      info  : socket io server started and initialized

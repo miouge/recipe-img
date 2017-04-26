@@ -17,29 +17,17 @@ router.use( function(req, res, next) {
 var logger = require("../logger")(); // logger iséo
 var auth = require("./auth.js");
 
-router.all('*', auth.requireAuthentication );
-router.use(compression()); // reply will be gzip encoded
+//router.all('*', auth.requireAuthentication );
+//router.use(compression()); // reply will be gzip encoded
 
 //------------------------------------------------
 
-/* Répertoire statique pour les sources ExtJs de l'appli */
-
-// toggle manually this switch
-//var version = 'production';
-var version = 'testing';
-
-if( version == 'production' )
-{
-    var path = '../../client/build/production';
-}
-else
-{
-    var path = '../../client/build/testing';
-}
+/* static serving of the backbone SPA */
+var path = '../client/backbone';
 
 router.use('/', express.static( path ));
 
-logger.info( "extjs appli path [%s]", path );
-console.log( "extjs appli path [%s]", path );
+logger.info( "appli path [%s]", path );
+console.log( "appli path [%s]", path );
 
 module.exports = router;

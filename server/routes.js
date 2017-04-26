@@ -11,5 +11,4 @@ module.exports = function( app ) {
     app.use( '/api', api );
     app.use( '/appli', appli );
     app.use( '/notify', notify );
-    
 };

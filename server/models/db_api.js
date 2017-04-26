@@ -99,14 +99,16 @@ module.exports.getUserInfo = function(userSettings, callback) {
         // request ...
 
         var params = [idlog];
-
-        var sql = "SELECT l.idlog, l.firstname, l.surname, l.tzdisplay, c.company, ";
-        sql += "to_char( c.dateend, 'yyyy/mm/dd hh24:mi:ss' ) dateend "; // date d'expiration de l'abonnement au service
-        sql += "FROM login l, customer c ";
-        sql += "WHERE c.idcust = l.idcust ";
-        sql += "AND l.idlog = $1 ";
-
-        //logger.trace( "request : %s", sql );
+        
+        var sql = "SELECT s.lsessionid, ";
+        sql +=    "l.idlog, l.login, l.firstname, l.surname, l.tzdisplay, ";
+        sql +=    "lg.english_name lng ";
+        sql +=    "FROM session s ";
+        sql +=    "INNER JOIN login l ON l.idlog = s.idlog ";
+        sql +=    "INNER JOIN language lg ON l.idlng = lg.idlng ";
+        sql +=    "WHERE l.idlog = $1 ";        
+        
+        logger.trace( "request : %s", sql );
 
         var query = client.query(sql, params);
 

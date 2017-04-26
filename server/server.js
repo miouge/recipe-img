@@ -31,9 +31,8 @@ var app = express();
 // app.configure() : This method is no longer available (Removed in Express 4)
 // https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x
 
-app.set( 'port', process.env.PORT || 3000 );
-//app.set( 'ip'  , '192.168.0.0' );
-// project is reachable at url : https://recipe-image-pri2015.c9users.io
+app.set( 'port', process.env.PORT ); // project is reachable at url : https://recipe-image-pri2015.c9users.io
+app.set( 'ip'  , process.env.IP   );
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -121,7 +120,6 @@ var server = app.listen( app.get('port'), app.get('ip'), function() {
 
 console.log( "server.js loaded !" );
 console.log( "trace folder : %s/trace", process.env.HOME );
-
 
 module.exports = app;
 

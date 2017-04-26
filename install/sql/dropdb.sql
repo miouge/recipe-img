@@ -1,0 +1,5 @@
+
+
+DROP TABLE IF EXISTS public.session CASCADE;
+DROP TABLE IF EXISTS public.login CASCADE;
+DROP TABLE IF EXISTS public.language CASCADE;

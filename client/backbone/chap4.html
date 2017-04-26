@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>chap4</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--V 3.0.1 ...-->
+    <link href="libs/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="libs/vendors/bootstrap/css/bootstrap-theme.css" rel="stylesheet">-->
+
+    <style>
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <div class="container">
+                <a class="navbar-brand">myhyperlink</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1>--title--</h1>
+      </div>
+
+
+    </div>
+
+  </body>
+  <!-- === Références aux Frameworks === -->
+  <script src="libs/vendors/jquery.js"></script><!--V 1.10.2 -->
+  <script src="libs/vendors/underscore.js"></script><!--V 1.5.2 -->
+  <script src="libs/vendors/backbone.js"></script><!--V 1.1.0 -->
+
+<script>
+	$(function() {
+
+    var classA = function() {};
+    classA.extend = Backbone.Model.extend;
+    
+    debugger;
+    
+    var classB = classA.extend({
+      constructor: function() {
+        console.log("classB constructor");
+      }
+    });
+    
+    var b = new classB();
+  	  
+
+	});
+</script>
+</html>
