@@ -111,9 +111,9 @@ var server = app.listen( app.get('port'), app.get('ip'), function() {
         if( monitored )
         {
             // --------- initialisation du watchdog --------
-            //var wd = require('./watchdog')();
-            //wd.init();
-            //logger.info('watchdog started.' );
+            var wd = require('./watchdog')();
+            wd.init();
+            logger.info('watchdog started.' );
         }
     });
 });
