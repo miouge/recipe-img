@@ -21,7 +21,7 @@ function watchDog() {
         //var stopdate = moment.utc().endOf( 'hour'   );
         //var stopdate = moment.utc().endOf( 'minute' );
         var stopdate = moment.utc({ // default to today
-            hour: 23,
+            hour: 4,
             minute: 45,
             seconds: 0,
             milliseconds: 0
@@ -82,7 +82,7 @@ function watchDog() {
                     pendingCount--; // this query is not pending any more
                 });
             });
-        }, 5 * 60000 ); // test toutes les 5 minutes
+        }, 10000 ); // every 10000 ms : 10s 
     };
 }
 

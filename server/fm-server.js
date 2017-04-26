@@ -7,7 +7,7 @@ console.log('---== Starting fm-server.js ...==---');
 var path = require('path');
 var forever = require('forever-monitor');
 
-var tracepath = path.normalize( process.env.HOME + '/trace/' );
+var tracepath = path.normalize( process.env.HOME + '/workspace/server/trace/' );  // process.env.HOME = /home/unbuntu
 
 var child = new( forever.Monitor )('server.js', {
 	silent : true,
